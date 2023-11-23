@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use App\Models\Application;
 use App\Models\Lookup\Status;
 
@@ -11,5 +12,9 @@ function lookup($model)
 
     if ($model === 'Status') {
         return Status::all();
+    }
+
+    if ($model === 'User') {
+        return User::all();
     }
 }
