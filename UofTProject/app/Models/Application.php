@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use PhpParser\Node\Expr\BinaryOp\BooleanOr;
 
 class Application extends Model
@@ -48,9 +49,56 @@ class Application extends Model
         return $this->belongsTo(Status::class);
     }
 
-    public function getIsApprovedAttribute(): Bool
+    public function getIsChairDeptRoleAttribute():bool
     {
-        return $this->status_id == 3 || $this->status_id == 7;
+        $roleId = auth()->user()->role_id;
+
+        return $roleId == 2;  /////// refactor all numbers below as lookup
     }
+
+    public function getIsFacultyMemberRoleAttribute():bool
+    {
+        $roleId = auth()->user()->role_id;
+
+        return $roleId == 1;
+    }
+
+    public function getIsDOAdministratorRoleAttribute():bool
+    {
+        $roleId = auth()->user()->role_id;
+
+        return $roleId == 3;
+    }
+
+    public function getIsDeptApprovedStatusAttribute(): Bool
+    {
+        return $this->status_id == 3;
+    }
+
+    public function getIsPendingDeptApprovalStatusAttribute(): Bool
+    {
+        return $this->status_id == 2;
+    }
+
+    public function getIsPendingRevisionsStatusAttribute(): Bool
+    {
+        return $this->status_id == 4;
+    }
+
+    public function getIsPendingDORevisionsStatusAttribute(): Bool
+    {
+        return $this->status_id == 5;
+    }
+
+    public function comments():HasMany
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+
+    // public function getIsApprovedAttribute(): Bool
+    // {
+    //     return $this->status_id == 3 || $this->status_id == 7;
+    // }
 
 }

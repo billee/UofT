@@ -2,6 +2,7 @@
 
 use App\Models\User;
 use App\Models\Application;
+use App\Models\Lookup\Role;
 use App\Models\Lookup\Status;
 
 function lookup($model)
@@ -15,6 +16,10 @@ function lookup($model)
     }
 
     if ($model === 'User') {
-        return User::all();
+        return User::all(); //refactor this line
+    }
+
+    if ($model === 'Role') {
+        return Role::all();
     }
 }

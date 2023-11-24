@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ApplicationController;
@@ -27,8 +28,16 @@ Route::get('/', function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
     Route::get('/create-application', [ApplicationController::class, 'create'])->name('application.create');
     Route::get('/save-application', [ApplicationController::class, 'store'])->name('application.store');
+    Route::get('/dept-approve-application/{id}', [ApplicationController::class, 'deptApprove'])->name('application.deptApprove');
+    Route::get('/pending-do-approve-application/{id}', [ApplicationController::class, 'pendingDOApprove'])->name('application.pendingDOApprove');
+
+
+    Route::get('/get-comments', [CommentController::class, 'getComment'])->name('comment.get');
+    Route::post('/save-comments', [CommentController::class, 'saveComment'])->name('comment.save');
+
 });
 
 
