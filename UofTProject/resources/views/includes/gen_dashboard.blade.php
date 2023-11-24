@@ -1,7 +1,7 @@
 
 <div class="container-fluid">
     <div class="row justify-content-center">
-        <div class="col-lg-10">
+        <div class="col-lg-15">
             <div class="card shadow my-4">
                 <table class="table table-striped">
                     <thead>
@@ -14,6 +14,7 @@
                             <th scope="col" class="text-center">Budget</th>
                             <th scope="col" class="text-center">Status</th>
                             <th scope="col" class="text-center">Date Created</th>
+                            <th scope="col" class="text-center"></th>
                             <th scope="col" class="text-center"></th>
                             <th scope="col" class="text-center"></th>
                             <th scope="col" class="text-center"></th>
@@ -32,30 +33,27 @@
                                     <td class="text-center">{{$application->created_at}}</td>
                                     <td class="text-center">
                                         <a href="/view" class="btn btn-sm btn-primary">
-                                            <i class="fas fa-eye"></i>View
+                                            {{-- <i class="fas fa-eye"></i> --}}
+                                            View
                                         </a>
                                     </td>
-                                    @if($application->isChairDeptRole && $application->isPendingDeptApprovalStatus)
+                                    @if($application->isFacultyMemberRole && ($application->isPendingRevisionsStatus || $application->isPendingDORevisionsStatus || $application->isDOConditionallyApprovedStatus))
                                         <td class="text-center">
-                                            <a href="{{route('application.deptApprove', ['id' => $application->id])}}" class="btn btn-sm btn-success">
-                                                <i class="fas fa-check"></i>Approve
-                                            </a>
-                                        </td>
-                                        <td class="text-center">
-                                            {{-- <a href="/dept-revision" class="btn btn-sm btn-warning">
-                                                <i class="fas fa-pencil-alt"></i>
-                                                Revision
-                                            </a> --}}
-
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#commentModal" data-url="{{route('comment.get')}}" data-id="{{ $application->id }}">
+                                            <button type="button" style="background-color: yellow;" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#commentModal" data-url="{{route('comment.get')}}" data-id="{{ $application->id }}">
                                                 Revision
                                             </button>
                                         </td>
                                     @endif
 
-                                    @if($application->isFacultyMemberRole && ($application->isPendingRevisionsStatus || $application->isPendingDORevisionsStatus))
+                                    @if($application->isChairDeptRole && $application->isPendingDeptApprovalStatus)
                                         <td class="text-center">
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#commentModal" data-url="{{route('comment.get')}}" data-id="{{ $application->id }}">
+                                            <a href="{{route('application.deptApprove', ['id' => $application->id])}}" class="btn btn-sm btn-success">
+                                                {{-- <i class="fas fa-check"></i> --}}
+                                                Approve
+                                            </a>
+                                        </td>
+                                        <td class="text-center">
+                                            <button type="button" style="background-color: yellow;" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#commentModal" data-url="{{route('comment.get')}}" data-id="{{ $application->id }}">
                                                 Revision
                                             </button>
                                         </td>
@@ -64,11 +62,32 @@
                                     @if($application->isDOAdministratorRole && $application->isDeptApprovedStatus)
                                         <td class="text-center">
                                             <a href="{{route('application.pendingDOApprove', ['id' => $application->id])}}" class="btn btn-sm btn-success">
-                                                <i class="fas fa-check"></i>Pending DO Approve
+                                                {{-- <i class="fas fa-check"></i> --}}
+                                                Pending DO Approve
                                             </a>
                                         </td>
                                         <td class="text-center">
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#commentModal" data-url="{{route('comment.get')}}" data-id="{{ $application->id }}">
+                                            <button type="button" style="background-color: yellow;" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#commentModal" data-url="{{route('comment.get')}}" data-id="{{ $application->id }}">
+                                                Revision
+                                            </button>
+                                        </td>
+                                    @endif
+
+                                    @if($application->isDecanalCommitteeMemberRole && $application->isPendingDOApprovalStatus)
+                                        <td class="text-center">
+                                            <a href="{{route('application.committeeApprove', ['id' => $application->id])}}" class="btn btn-sm btn-success">
+                                                {{-- <i class="fas fa-check"></i> --}}
+                                                Approve
+                                            </a>
+                                        </td>
+                                        <td class="text-center">
+                                            <a href="{{route('application.committeeDenied', ['id' => $application->id])}}" class="btn btn-sm btn-danger">
+                                                {{-- <i class="fas fa-check"></i> --}}
+                                                Deny
+                                            </a>
+                                        </td>
+                                        <td class="text-center">
+                                            <button type="button" style="background-color: yellow;" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#commentModal" data-url="{{route('comment.get')}}" data-id="{{ $application->id }}">
                                                 Revision
                                             </button>
                                         </td>

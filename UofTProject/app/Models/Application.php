@@ -70,6 +70,15 @@ class Application extends Model
         return $roleId == 3;
     }
 
+    public function getIsDecanalCommitteeMemberRoleAttribute():bool
+    {
+        $roleId = auth()->user()->role_id;
+
+        return $roleId == 4;
+    }
+
+
+
     public function getIsDeptApprovedStatusAttribute(): Bool
     {
         return $this->status_id == 3;
@@ -88,6 +97,16 @@ class Application extends Model
     public function getIsPendingDORevisionsStatusAttribute(): Bool
     {
         return $this->status_id == 5;
+    }
+
+    public function getIsPendingDOApprovalStatusAttribute(): Bool
+    {
+        return $this->status_id == 6;
+    }
+
+    public function getIsDOConditionallyApprovedStatusAttribute(): Bool
+    {
+        return $this->status_id == 8;
     }
 
     public function comments():HasMany

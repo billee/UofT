@@ -22,10 +22,13 @@ class CommentController extends Controller
         $department_chair_role_id = Lookup('Role')->where('slug', 'department_chair')->first()->id;
         $faculty_member_role_id = Lookup('Role')->where('slug', 'faculty_member')->first()->id;
         $dean_office_administrator_role_id = Lookup('Role')->where('slug', 'dean_office_administrator')->first()->id;
+        $decanal_committee_member_role_id = Lookup('Role')->where('slug', 'decanal_committee_member')->first()->id;
 
 
         if($department_chair_role_id == $user_role_id) {
             $role_slug = 'pending_revisions';
+        }elseif($decanal_committee_member_role_id  == $user_role_id) {
+            $role_slug = 'do_conditionally_approved';
         }elseif($dean_office_administrator_role_id == $user_role_id) {
             $role_slug = 'pending_do_revisions';
         }elseif($faculty_member_role_id == $user_role_id){

@@ -33,6 +33,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/save-application', [ApplicationController::class, 'store'])->name('application.store');
     Route::get('/dept-approve-application/{id}', [ApplicationController::class, 'deptApprove'])->name('application.deptApprove');
     Route::get('/pending-do-approve-application/{id}', [ApplicationController::class, 'pendingDOApprove'])->name('application.pendingDOApprove');
+    Route::get('/committee-approve-application/{id}', [ApplicationController::class, 'committeeApprove'])->name('application.committeeApprove');
+    Route::get('/committee-denied-application/{id}', [ApplicationController::class, 'committeeDenied'])->name('application.committeeDenied');
 
 
     Route::get('/get-comments', [CommentController::class, 'getComment'])->name('comment.get');

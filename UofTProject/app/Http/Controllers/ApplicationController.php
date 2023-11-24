@@ -45,4 +45,20 @@ class ApplicationController extends Controller
 
         return redirect()->route('dashboard')->with('message', 'Application '.$id.' is now in pending approval by the Dean\' administrator.');
     }
+
+    public function committeeApprove($id)
+    {
+        $application = Application::findOrFail($id);
+        $application->update(['status_id' => Lookup('Status')->where('slug', 'do_approved')->first()->id]);
+
+        return redirect()->route('dashboard')->with('message', 'Application '.$id.' is now approved by decanal committee member.');
+    }
+
+    public function committeeDenied($id)
+    {
+        $application = Application::findOrFail($id);
+        $application->update(['status_id' => Lookup('Status')->where('slug', 'do_denied')->first()->id]);
+
+        return redirect()->route('dashboard')->with('message', 'Application '.$id.' has been denied.');
+    }
 }
