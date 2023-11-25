@@ -16,18 +16,18 @@ class ApplicationController extends Controller
     }
 
     public function store(Request $request){
-        dump('oooooo');
+        dd($request->all());
 
-        Application::create([
-            'program_id' => '1',
-            'user_id' => auth()->user()->id,
-            'academic_year' => 2022,
-            'no_of_students' => 2,
-            'status_id' => 1
-        ]);
+        // Application::create([
+        //     'program_id' => '1',
+        //     'user_id' => auth()->user()->id,
+        //     'academic_year' => 2022,
+        //     'no_of_students' => 2,
+        //     'status_id' => 1
+        // ]);
 
 
-        return redirect()->route('dashboard')->with('message', 'Application has been saved Successfully.');
+        //return redirect()->route('dashboard')->with('message', 'Application has been saved Successfully.');
     }
 
     public function deptApprove($id)
