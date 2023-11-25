@@ -26,19 +26,19 @@
                 @include('includes.tabs.summary')
             </div>
             <div class="tab-pane fade" id="activity" role="tabpanel" aria-labelledby="activity-tab">
-                <p>Content for Activity Tab</p>
+                @include('includes.tabs.activity')
             </div>
             <div class="tab-pane fade" id="itinerary" role="tabpanel" aria-labelledby="itinerary-tab">
-                <p>Content for Itinerary Tab</p>
+                @include('includes.tabs.itinerary')
             </div>
             <div class="tab-pane fade" id="budget" role="tabpanel" aria-labelledby="budget-tab">
-                <p>Content for Budget Tab</p>
+                @include('includes.tabs.budget')
             </div>
         </div>
 
         <hr/>
-        <br/>
-        <div class="d-flex">
+
+        <div class="d-flex mt-10">
             @if(1 == $roleId)
                 <button type="submit" style="background-color:darkred" class="btn btn-primary">Save New Application</button>
             @endif
