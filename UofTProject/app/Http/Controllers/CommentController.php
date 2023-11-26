@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use App\Mail\RevisionEmail;
 use App\Models\Application;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class CommentController extends Controller
 {
@@ -12,7 +14,7 @@ class CommentController extends Controller
         $postId = $request->query('postId');
         $comments = Comment::where('application_id', $postId)->get();
 
-         return response()->json($comments);
+        return response()->json($comments);
     }
 
     public function saveComment(Request $request){
@@ -44,8 +46,19 @@ class CommentController extends Controller
             'created_at' => now()
         ]);
 
+        $this->sendEMail();
+
         return response()->json(['success' => true, 'message' => 'Comment has been added to application '.$request->id.'.']);
 
         //return redirect()->route('dashboard')->with('message', 'Comment has been added to application '.$request->id.'.');
+    }
+
+    public function sendEmail()
+    {
+        $data = ['message' => 'This is the message coming from the controller.'];
+
+        Mail::to('faculty@example.com', 'dept_chair@example.com')->send(new RevisionEmail($data));
+
+        return 'Email sent!';
     }
 }

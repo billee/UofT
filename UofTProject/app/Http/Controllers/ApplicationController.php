@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\RevisionEmail;
 use App\Models\Application;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ApplicationController extends Controller
 {
@@ -61,4 +63,13 @@ class ApplicationController extends Controller
 
         return redirect()->route('dashboard')->with('message', 'Application '.$id.' has been denied.');
     }
+
+    // public function sendEmail()
+    // {
+    //     $data = ['message' => 'This is the message coming from the controller.'];
+
+    //     Mail::to('faculty@example.com', 'dept_chair@example.com')->send(new RevisionEmail($data));
+
+    //     return 'Email sent!';
+    // }
 }
