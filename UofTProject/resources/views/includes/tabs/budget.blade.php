@@ -42,13 +42,22 @@
                                 <div id="collapseOne" class="accordion-collapse collapse">
                                     <div class="accordion-body">
                                         <table id="TravelTable">
-                                            @include('includes.tabs.budget-table')
+                                            @if('view' == $pageMode)
+                                                @php
+                                                    $applicationBudgets = $application->applicationBudgets->where('budget_category_id', 1) ?? '';
+                                                @endphp
+                                                @include('includes.tabs.budget-table-view')
+                                            @else
+                                                @include('includes.tabs.budget-table')
+                                            @endif
                                         </table>
-                                        <div>
-                                            <button type="button" type="background-color:blue" class="btn btn-primary budget-travel-btn">
-                                                Add
-                                            </button>
-                                        </div>
+                                        @if('create' == $pageMode)
+                                            <div>
+                                                <button type="button" type="background-color:blue" class="btn btn-primary budget-travel-btn">
+                                                    Add
+                                                </button>
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -62,13 +71,22 @@
                                 <div id="collapseTwo" class="accordion-collapse collapse">
                                     <div class="accordion-body">
                                         <table id="AccommodationTable">
-                                            @include('includes.tabs.budget-table')
+                                            @if('view' == $pageMode)
+                                                @php
+                                                    $applicationBudgets = $application->applicationBudgets->where('budget_category_id', 2) ?? '';
+                                                @endphp
+                                                @include('includes.tabs.budget-table-view')
+                                            @else
+                                                @include('includes.tabs.budget-table')
+                                            @endif
                                         </table>
-                                        <div>
-                                            <button type="button" type="background-color:blue" class="btn btn-primary budget-accommodation-btn">
-                                                Add
-                                            </button>
-                                        </div>
+                                        @if('create' == $pageMode)
+                                            <div>
+                                                <button type="button" type="background-color:blue" class="btn btn-primary budget-accommodation-btn">
+                                                    Add
+                                                </button>
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -82,13 +100,22 @@
                                 <div id="collapseThree" class="accordion-collapse collapse">
                                     <div class="accordion-body">
                                         <table id="FoodTable">
-                                            @include('includes.tabs.budget-table')
+                                            @if('view' == $pageMode)
+                                                @php
+                                                    $applicationBudgets = $application->applicationBudgets->where('budget_category_id', 3) ?? '';
+                                                @endphp
+                                                @include('includes.tabs.budget-table-view')
+                                            @else
+                                                @include('includes.tabs.budget-table')
+                                            @endif
                                         </table>
-                                        <div>
-                                            <button type="button" type="background-color:blue" class="btn btn-primary budget-food-btn">
-                                                Add
-                                            </button>
-                                        </div>
+                                        @if('create' == $pageMode)
+                                            <div>
+                                                <button type="button" type="background-color:blue" class="btn btn-primary budget-food-btn">
+                                                    Add
+                                                </button>
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -102,13 +129,22 @@
                                 <div id="collapseFour" class="accordion-collapse collapse">
                                     <div class="accordion-body">
                                         <table id="FundTable">
-                                            @include('includes.tabs.budget-table')
+                                            @if('view' == $pageMode)
+                                                @php
+                                                    $applicationBudgets = $application->applicationBudgets->where('budget_category_id', 4) ?? '';
+                                                @endphp
+                                                @include('includes.tabs.budget-table-view')
+                                            @else
+                                                @include('includes.tabs.budget-table')
+                                            @endif
                                         </table>
-                                        <div>
-                                            <button type="button" type="background-color:blue" class="btn btn-primary budget-fund-btn">
-                                                Add
-                                            </button>
-                                        </div>
+                                        @if('create' == $pageMode)
+                                            <div>
+                                                <button type="button" type="background-color:blue" class="btn btn-primary budget-fund-btn">
+                                                    Add
+                                                </button>
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

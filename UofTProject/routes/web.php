@@ -35,7 +35,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/pending-do-approve-application/{id}', [ApplicationController::class, 'pendingDOApprove'])->name('application.pendingDOApprove');
     Route::get('/committee-approve-application/{id}', [ApplicationController::class, 'committeeApprove'])->name('application.committeeApprove');
     Route::get('/committee-denied-application/{id}', [ApplicationController::class, 'committeeDenied'])->name('application.committeeDenied');
-
+    Route::get('/view-application/{id}', [ApplicationController::class, 'view'])->name('application.view');
 
     Route::get('/get-comments', [CommentController::class, 'getComment'])->name('comment.get');
     Route::post('/save-comments', [CommentController::class, 'saveComment'])->name('comment.save');

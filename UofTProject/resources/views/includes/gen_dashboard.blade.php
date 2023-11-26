@@ -32,8 +32,7 @@
                                     <td class="text-center">{{lookup('Status')->where('id', $application->status_id)->first()->name}}</td>
                                     <td class="text-center">{{$application->created_at}}</td>
                                     <td class="text-center">
-                                        <a href="/view" class="btn btn-sm btn-primary">
-                                            {{-- <i class="fas fa-eye"></i> --}}
+                                        <a class="btn btn-sm btn-primary" href="{{route('application.view', ['id' => $application->id])}}" class="btn btn-primary">
                                             View
                                         </a>
                                     </td>

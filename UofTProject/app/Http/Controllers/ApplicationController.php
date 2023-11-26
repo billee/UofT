@@ -13,8 +13,19 @@ class ApplicationController extends Controller
 
         $userId = auth()->user()->id;
         $roleId = auth()->user()->role_id;
+        $pageMode = 'create';
 
-        return view('application', compact('roleId'));
+        return view('application', compact('roleId', 'pageMode'));
+    }
+
+    public function view(int $id){
+
+        $userId = auth()->user()->id;
+        $roleId = auth()->user()->role_id;
+        $pageMode = 'view';
+        $application = Application::findOrFail($id);
+
+        return view('application', compact('application', 'roleId', 'pageMode'));
     }
 
     public function store(Request $request){
@@ -64,12 +75,5 @@ class ApplicationController extends Controller
         return redirect()->route('dashboard')->with('message', 'Application '.$id.' has been denied.');
     }
 
-    // public function sendEmail()
-    // {
-    //     $data = ['message' => 'This is the message coming from the controller.'];
 
-    //     Mail::to('faculty@example.com', 'dept_chair@example.com')->send(new RevisionEmail($data));
-
-    //     return 'Email sent!';
-    // }
 }

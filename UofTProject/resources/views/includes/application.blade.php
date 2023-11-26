@@ -1,3 +1,4 @@
+
 <div class="container-fluid">
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
@@ -38,11 +39,20 @@
 
         <hr/>
 
-        <div class="d-flex mt-10">
+        {{-- <div class="d-flex mt-10">
             @if(1 == $roleId)
-                <button type="submit" style="background-color:darkred" class="btn btn-primary">Save New Application</button>
+                <button type="submit" style="background-color:darkred" class="btn btn-primary">Create New Application</button>
             @endif
-        </div>
+        </div> --}}
+
+        @if('create' == $pageMode)
+            <div class="d-flex mt-10">
+                @if(1 == $roleId)
+                    <a href="{{route('application.create')}}" class="btn btn-primary">Create New Application</a>
+                @endif
+                <a href="/download" class="btn btn-secondary ml-auto">Download</a>
+            </div>
+        @endif
     </form>
 </div>
 

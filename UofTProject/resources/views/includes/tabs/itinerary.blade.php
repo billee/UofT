@@ -1,5 +1,7 @@
 
-    <div class="container py-5">
+
+
+    {{-- <div class="container py-5">
             <div id="dynamic-itinerary-fieldset">
                 <fieldset class="mb-3 fieldset-itinerary-template">
                     <div class="row mb-4">
@@ -26,7 +28,17 @@
             </div>
 
             <button type="button" id="add-itinerary-button" style="background-color:blue" class="btn btn-primary">+ Add another row</button>
-    </div>
+    </div> --}}
+
+    @if('view' == $pageMode)
+        @foreach($application->applicationItineraries as $itinerary)
+            @include('includes.tabs.itinerary-table')
+        @endforeach
+    @else
+        @include('includes.tabs.itinerary-table')
+    @endif
+
+
 
     <script type="text/javascript">
         $(document).ready(function() {
