@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Application;
 use Illuminate\Http\Request;
 use App\Models\Lookup\Status;
+use App\Exports\DashboardExport;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
+//use Rap2hpoutre\FastExcel\Facades\FastExcel;
+use Rap2hpoutre\FastExcel\FastExcel;
 
 class DashboardController extends Controller
 {
@@ -30,4 +34,12 @@ class DashboardController extends Controller
 
         return view('dashboard', compact('applications', 'userId', 'roleId'));
     }
+
+    public function download()
+    {
+        $applications = Application::all();
+
+        return (new FastExcel($applications))->download('applications.xlsx');
+    }
+
 }

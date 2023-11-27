@@ -29,7 +29,10 @@ class ApplicationController extends Controller
     }
 
     public function store(Request $request){
-        dd($request->all());
+        dump($request->all());
+
+
+        dd('..........');
 
         // Application::create([
         //     'program_id' => '1',

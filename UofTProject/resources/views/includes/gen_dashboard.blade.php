@@ -106,9 +106,9 @@
 
     <div class="d-flex">
         @if(1 == $roleId)
-            <a href="{{route('application.create')}}" class="btn btn-primary">Create New Application</a>
+            <a href="{{route('application.create')}}" class="btn btn-primary">Create New Application......</a>
         @endif
-        <a href="/download" class="btn btn-secondary ml-auto">Download</a>
+        <a href="{{ url('dashboard/download') }}" class="btn btn-secondary ml-auto">Download</a>
     </div>
 </div>
 

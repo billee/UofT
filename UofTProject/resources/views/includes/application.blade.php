@@ -38,19 +38,11 @@
         </div>
 
         <hr/>
-
-        {{-- <div class="d-flex mt-10">
-            @if(1 == $roleId)
-                <button type="submit" style="background-color:darkred" class="btn btn-primary">Create New Application</button>
-            @endif
-        </div> --}}
-
         @if('create' == $pageMode)
             <div class="d-flex mt-10">
                 @if(1 == $roleId)
-                    <a href="{{route('application.create')}}" class="btn btn-primary">Create New Application</a>
+                    <button type="submit" style="background-color:darkred" class="btn btn-primary">Save New Application</button>
                 @endif
-                <a href="/download" class="btn btn-secondary ml-auto">Download</a>
             </div>
         @endif
     </form>
