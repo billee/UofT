@@ -36,8 +36,7 @@ class ApplicationController extends Controller
     }
 
     public function store(Request $request, ApplicationBudgetService $applicationBudgetService){
-        //dump($request->all());
-
+        //dump($request->all())
 
         $data= [
             'program_id' => 1,
@@ -150,7 +149,16 @@ class ApplicationController extends Controller
         $fundBudget = $applicationBudgetService->prepareDataByCategoryNameForDB($request, 4, $insertedId);
         ApplicationBudget::insert($fundBudget);
 
-        return redirect()->route('dashboard')->with('message', 'Application has been saved Successfully.');
+        //--check if the faculty member has applied already in this academic year
+        if(Application::where('academic_year', '2023')->get()->count()){  /////////////////////hardcoded
+            $application->update(['status_id' => Lookup('Status')->where('slug', 'on_hold')->first()->id]);
+            return redirect()->route('dashboard')->with('message', 'Faculty Members are only allowed one submission per academic session, pending an exception from the Department Chair.');
+        }else{
+            $application->update(['status_id' => Lookup('Status')->where('slug', 'pending_dept_approval')->first()->id]);
+            return redirect()->route('dashboard')->with('message', 'Application has been saved Successfully.');
+        }
+
+
     }
 
     public function deptApprove($id)

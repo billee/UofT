@@ -81,6 +81,10 @@ class Application extends Model
     }
 
 
+    public function getIsOnHoldStatusAttribute(): Bool
+    {
+        return $this->status_id == 1;
+    }
 
     public function getIsDeptApprovedStatusAttribute(): Bool
     {

@@ -32,8 +32,15 @@ function LookupApplicantStatus($type){
     }elseif(is_string($type)) {
         return ApplicantStatus::where('slug', $type)->id;
     }else{
-        dump('none');
+        return '';
     }
+}
+
+function GetApplicationBudget(Application $application){
+    $total = $application->applicationBudgets->sum('total');
+    $fund  = $application->applicationBudgets->where('budget_category_id', 4)->sum('total');
+
+    return number_format(($total - $fund), 2);
 }
 
 // function Lookups(Model $model, string|int $type){

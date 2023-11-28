@@ -45,8 +45,15 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    // public function role():HasOne
-    // {
-    //     return $this->hasOne(Role::class);
-    // }
+    public function getFirstNameAttribute():string
+    {
+            $name_parts = explode(' ', $this->name);
+            return $name_parts[0];
+    }
+
+    public function getLastNameAttribute():string
+    {
+            $name_parts = explode(' ', $this->name);
+            return $name_parts[1];
+    }
 }

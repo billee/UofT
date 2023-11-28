@@ -73,8 +73,10 @@ document.getElementById('application-form').addEventListener('submit', function(
 
     totalBudget -= fundTotal;
 
-    console.log(totalBudget);
-    console.log(fundTotal);
+    // console.log(totalBudget);
+    // console.log(fundTotal);
+
+
 
     if (totalBudget > 25000) {
         alert('Total budget exceeds 25000!');

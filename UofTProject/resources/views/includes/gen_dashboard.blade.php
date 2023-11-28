@@ -28,7 +28,7 @@
                                     <td>{{ucwords(lookup('User')->where('id', $application->user_id)->first()->name)}}</td>
                                     <td class="text-center">{{$application->academic_year}}</td>
                                     <td class="text-center">{{$application->no_of_students}}</td>
-                                    <td class="text-center">XXXX</td>
+                                    <td class="text-center">{{getApplicationBudget($application)}}</td>
                                     <td class="text-center">{{lookup('Status')->where('id', $application->status_id)->first()->name}}</td>
                                     <td class="text-center">{{$application->created_at}}</td>
                                     <td class="text-center">
@@ -44,7 +44,7 @@
                                         </td>
                                     @endif
 
-                                    @if($application->isChairDeptRole && $application->isPendingDeptApprovalStatus)
+                                    @if($application->isChairDeptRole && ($application->isPendingDeptApprovalStatus || $application->isOnHoldStatus))
                                         <td class="text-center">
                                             <a href="{{route('application.deptApprove', ['id' => $application->id])}}" class="btn btn-sm btn-success">
                                                 {{-- <i class="fas fa-check"></i> --}}

@@ -1,3 +1,6 @@
+@php
+    //dump();
+@endphp
 <div class="container py-5">
     <div id="dynamic-fieldset">
         <fieldset class="mb-3 fieldset-template">
@@ -5,13 +8,13 @@
                 <div class="col-6">
                     <div class="form-group">
                         <label for="last_name-0" class="fw-bold">Last Name:</label>
-                        <input type="text" class="form-control" id="last_name-0" name="last_name-0" value="@if('view' == $pageMode) {{$info->last_name}} @endif">
+                        <input type="text" class="form-control" id="last_name-0" name="last_name-0" value="@if('view' == $pageMode) {{$info->last_name}} @else {{ucwords(Lookup('User')->where('id', auth()->user()->id)->first()->lastName)}} @endif">
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
                         <label for="first_name-0" class="fw-bold">First Name:</label>
-                        <input type="text" class="form-control" id="first_name-0" name="first_name-0"  value="@if('view' == $pageMode) {{$info->first_name}} @endif">
+                        <input type="text" class="form-control" id="first_name-0" name="first_name-0"  value="@if('view' == $pageMode) {{$info->first_name}} @else {{ucwords(Lookup('User')->where('id', auth()->user()->id)->first()->firstName)}} @endif">
                     </div>
                 </div>
             </div>
@@ -19,7 +22,7 @@
                 <div class="form-group">
                         @if('view' == $pageMode)
                             <label><span class="fw-bold">Status:</span></label>
-                            <p class="mr-10">{{LookupApplicantStatus($info->status)}}</p>
+                            <p class="mr-10">{{LookupApplicantStatus($info->status) ?? ''}}</p>
                         @else
                             <label><span class="fw-bold">Status:</span> <i>Please indicate whether you are a faculty member, graduate or undergraduate student</i></label>
                             <div class="form-check">
