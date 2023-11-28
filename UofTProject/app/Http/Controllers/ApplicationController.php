@@ -36,19 +36,34 @@ class ApplicationController extends Controller
     }
 
     public function store(Request $request, ApplicationBudgetService $applicationBudgetService){
-        //dump($request->all())
+        //dump($request->all());
 
-        $data= [
-            'program_id' => 1,
-            'user_id'    => auth()->user()->id,
-            'academic_year' => Carbon::now()->year,
-            'no_of_students' => 3,
-            'status_id'  => 2,
-            'created_at' => Carbon::now()
-        ];
+        if(!isset($request['id'])){
+            //-- create
+            $data= [
+                'program_id' => 1,
+                'user_id'    => auth()->user()->id,
+                'academic_year' => Carbon::now()->year,
+                'no_of_students' => 3,
+                'status_id'  => 2,
+                'created_at' => Carbon::now()
+            ];
 
-        $application = Application::create($data);
-        $insertedId = $application->id;
+            $application = Application::create($data);
+            $insertedId = $application->id;
+        }else{
+            //-- edit
+            $insertedId = $request['id'];
+            $application= Application::findOrFail($insertedId);
+            $application->applicationInfos->each->forceDelete();
+            $application->applicationActivity->forceDelete();
+            $application->applicationSummary->forceDelete();
+            $application->applicationItineraries->each->forceDelete();
+            $application->applicationBudgets->each->forceDelete();
+        }
+
+// dump($insertedId);
+//         dd('...........');
 
         $infos = [];
         $i = 0;
@@ -150,7 +165,7 @@ class ApplicationController extends Controller
         ApplicationBudget::insert($fundBudget);
 
         //--check if the faculty member has applied already in this academic year
-        if(Application::where('academic_year', '2023')->get()->count()){  /////////////////////hardcoded
+        if(Application::where('academic_year', '2023')->get()->count() && !isset($request['id'])){  /////////////////////hardcoded
             $application->update(['status_id' => Lookup('Status')->where('slug', 'on_hold')->first()->id]);
             return redirect()->route('dashboard')->with('message', 'Faculty Members are only allowed one submission per academic session, pending an exception from the Department Chair.');
         }else{

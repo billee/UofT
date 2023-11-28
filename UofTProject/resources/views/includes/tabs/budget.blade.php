@@ -46,7 +46,7 @@
                                                 @php
                                                     $applicationBudgets = $application->applicationBudgets->where('budget_category_id', 1) ?? '';
                                                 @endphp
-                                                @include('includes.tabs.budget-table-view')
+                                                @include('includes.tabs.budget-table-view', ['tableName' => 'travel'])
                                             @else
                                                 @include('includes.tabs.budget-table')
                                             @endif
@@ -75,7 +75,7 @@
                                                 @php
                                                     $applicationBudgets = $application->applicationBudgets->where('budget_category_id', 2) ?? '';
                                                 @endphp
-                                                @include('includes.tabs.budget-table-view')
+                                                @include('includes.tabs.budget-table-view', ['tableName' => 'accommodation'])
                                             @else
                                                 @include('includes.tabs.budget-table')
                                             @endif
@@ -104,7 +104,7 @@
                                                 @php
                                                     $applicationBudgets = $application->applicationBudgets->where('budget_category_id', 3) ?? '';
                                                 @endphp
-                                                @include('includes.tabs.budget-table-view')
+                                                @include('includes.tabs.budget-table-view', ['tableName' => 'food'])
                                             @else
                                                 @include('includes.tabs.budget-table')
                                             @endif
@@ -133,7 +133,7 @@
                                                 @php
                                                     $applicationBudgets = $application->applicationBudgets->where('budget_category_id', 4) ?? '';
                                                 @endphp
-                                                @include('includes.tabs.budget-table-view')
+                                                @include('includes.tabs.budget-table-view', ['tableName' => 'fund'])
                                             @else
                                                 @include('includes.tabs.budget-table')
                                             @endif

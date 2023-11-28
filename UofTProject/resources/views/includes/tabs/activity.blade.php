@@ -1,5 +1,5 @@
 @php
-    $summary = $application->applicationActivity ?? '';
+    $activity = $application->applicationActivity ?? '';
 @endphp
 
 <div class="container py-5">
@@ -10,7 +10,7 @@
                     <label for="description"><span class="fw-bold">Description of proposed IEP module:</span></label>
                         <p><i>Please provide a brief description that is student-facing and can be used in A&S promotional materials.</i></p>
                     <textarea class="form-control" name="description" rows="10">
-                        @if('view' == $pageMode) {{$summary->description}} @endif
+                        @if('view' == $pageMode) {{$activity->description ?? ''}} @endif
                     </textarea>
                 </div>
             </div>
@@ -21,7 +21,7 @@
                     <label for="outcome"><span class="fw-bold">Planned academic outcomes:</span></label>
                         <p><i>What are the learning objectives of this module and how does the IEP enhance students' (both IEP participants and non-participants) learning for thecourse in which it is embedded?</i></p>
                     <textarea class="form-control" name="outcome" rows="10">
-                        @if('view' == $pageMode) {{$summary->outcome}} @endif
+                        @if('view' == $pageMode) {{$activity->outcome ?? ''}} @endif
                     </textarea>
                 </div>
             </div>

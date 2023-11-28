@@ -46,19 +46,22 @@ class CommentController extends Controller
             'created_at' => now()
         ]);
 
-        $this->sendEMail();
+        $this->sendEMail($request->comment, ['faculty@example.com', 'chair@example.com']);
 
         return response()->json(['success' => true, 'message' => 'Comment has been added to application '.$request->id.'.']);
 
         //return redirect()->route('dashboard')->with('message', 'Comment has been added to application '.$request->id.'.');
     }
 
-    public function sendEmail()
+    public function sendEmail(string $message, array $recipient): void
     {
-        $data = ['message' => 'This is the message coming from the controller.'];
+        //-- this should be done using job queue
 
-        Mail::to('faculty@example.com', 'dept_chair@example.com')->send(new RevisionEmail($data));
+        $data = ['message' => $message];
 
-        return 'Email sent!';
+       // Mail::to('faculty@example.com', 'chair@example.com')->send(new RevisionEmail($data));
+        Mail::to($recipient)->send(new RevisionEmail($data));
+
+        //return 'Email sent!';
     }
 }

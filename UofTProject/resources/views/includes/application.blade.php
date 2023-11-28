@@ -38,13 +38,18 @@
         </div>
 
         <hr/>
-        @if('create' == $pageMode)
-            <div class="d-flex mt-10">
-                @if(1 == $roleId)
+        <div class="d-flex mt-10">
+            @if(1 == $roleId)
+                @if('create' == $pageMode)
                     <button type="submit" style="background-color:darkred" class="btn btn-primary">Save New Application</button>
+                @else
+                    <input type="hidden" name="id" value="{{ $application->id ?? '' }}">
+                    <button type="submit" style="background-color:darkred" class="btn btn-primary">Save Changes</button>
                 @endif
-            </div>
-        @endif
+
+            @endif
+            <a href="{{route('dashboard')}}" type="button" style="background-color: blue" class="btn btn-primary float-right">Back</a>
+        </div>
     </form>
 </div>
 
