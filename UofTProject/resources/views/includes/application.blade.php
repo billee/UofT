@@ -17,7 +17,7 @@
             <button class="nav-link" id="budget-tab" data-bs-toggle="tab" data-bs-target="#budget" type="button" role="tab" aria-controls="budget" aria-selected="false">Budget</button>
         </li>
     </ul>
-    <form method="POST" action="{{ route('application.store') }}">
+    <form method="POST" id="application-form" action="{{ route('application.store') }}">
         @csrf
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="information" role="tabpanel" aria-labelledby="information-tab">
@@ -48,7 +48,42 @@
     </form>
 </div>
 
+<script>
 
+document.getElementById('application-form').addEventListener('submit', function(e) {
+
+    var formData = new FormData(e.target);
+    var formValues = {};
+
+    for (var pair of formData.entries()) {
+        formValues[pair[0]] = pair[1];
+    }
+
+    var totalBudget = 0;
+    var fundTotal = 0;
+    for (var key in formValues) {
+        if (key.includes('total')) {
+            if (key.includes('budget_fund_total')) {
+                fundTotal += parseInt(formValues[key], 10) || 0;
+            } else {
+                totalBudget += parseInt(formValues[key], 10) || 0;
+            }
+        }
+    }
+
+    totalBudget -= fundTotal;
+
+    console.log(totalBudget);
+    console.log(fundTotal);
+
+    if (totalBudget > 25000) {
+        alert('Total budget exceeds 25000!');
+        e.preventDefault();
+    }
+});
+
+
+</script>
 
 
 

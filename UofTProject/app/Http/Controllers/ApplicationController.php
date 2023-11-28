@@ -38,6 +38,7 @@ class ApplicationController extends Controller
     public function store(Request $request, ApplicationBudgetService $applicationBudgetService){
         //dump($request->all());
 
+
         $data= [
             'program_id' => 1,
             'user_id'    => auth()->user()->id,

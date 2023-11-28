@@ -16,7 +16,7 @@
                         <h2 class="text-4xl font-bold mb-2 mr-5">University of Toronto</h2>
 
                         <div class="text-xl mb-2">International Experience Program
-                                </br><span class="text-sm">Application for Funding: 2022-2023</span></div>
+                                </br><span class="text-sm">Application for Funding: 2023-2024</span></div>
                     </x-nav-link>
                 </div>
 
