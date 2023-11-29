@@ -37,7 +37,7 @@ function LookupApplicantStatus($type){
 }
 
 function GetApplicationBudget(Application $application){
-    $total = $application->applicationBudgets->sum('total');
+    $total = $application->applicationBudgets->where('budget_category_id','<>', 4)->sum('total');
     $fund  = $application->applicationBudgets->where('budget_category_id', 4)->sum('total');
 
     return number_format(($total - $fund), 2);

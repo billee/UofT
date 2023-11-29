@@ -27,6 +27,6 @@
     </div>
 
     @if('create' == $pageMode)
-        <button type="button" id="add-itinerary-button" style="background-color:blue" class="btn btn-primary">+ Add another row</button>
+        <button type="button" id="add-itinerary-button" style="background-color:cadetblue" class="btn btn-primary">+ Add another row</button>
     @endif
 </div>

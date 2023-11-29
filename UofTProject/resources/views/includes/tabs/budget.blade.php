@@ -19,7 +19,7 @@
         padding-top: 12px;
         padding-bottom: 12px;
         text-align: center;
-        background-color: #4CAF50;
+        background-color:darkgray;
         color: white;
     }
 </style>
@@ -53,7 +53,7 @@
                                         </table>
                                         @if('create' == $pageMode)
                                             <div>
-                                                <button type="button" type="background-color:blue" class="btn btn-primary budget-travel-btn">
+                                                <button type="button" style="background-color:cadetblue" class="btn btn-primary budget-travel-btn mt-3">
                                                     Add
                                                 </button>
                                             </div>
@@ -82,7 +82,7 @@
                                         </table>
                                         @if('create' == $pageMode)
                                             <div>
-                                                <button type="button" type="background-color:blue" class="btn btn-primary budget-accommodation-btn">
+                                                <button type="button" style="background-color: cadetblue" class="btn btn-primary budget-accommodation-btn  mt-3">
                                                     Add
                                                 </button>
                                             </div>
@@ -111,7 +111,7 @@
                                         </table>
                                         @if('create' == $pageMode)
                                             <div>
-                                                <button type="button" type="background-color:blue" class="btn btn-primary budget-food-btn">
+                                                <button type="button" style="background-color:cadetblue" class="btn btn-primary budget-food-btn mt-3">
                                                     Add
                                                 </button>
                                             </div>
@@ -140,7 +140,7 @@
                                         </table>
                                         @if('create' == $pageMode)
                                             <div>
-                                                <button type="button" type="background-color:blue" class="btn btn-primary budget-fund-btn">
+                                                <button type="button" style="background-color:cadetblue" class="btn btn-primary budget-fund-btn mt-3">
                                                     Add
                                                 </button>
                                             </div>

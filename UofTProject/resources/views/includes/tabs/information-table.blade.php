@@ -56,6 +56,6 @@
         </fieldset>
     </div>
     @if('create' == $pageMode)
-        <button type="button" id="add-button" style="background-color:blue" class="btn btn-primary">+ Co-Applicant Information (if applicable)</button>
+        <button type="button" id="add-button" style="background-color:cadetblue" class="btn btn-primary">+ Co-Applicant Information (if applicable)</button>
     @endif
 </div>

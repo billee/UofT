@@ -36,7 +36,9 @@ class ApplicationController extends Controller
     }
 
     public function store(Request $request, ApplicationBudgetService $applicationBudgetService){
-        //dump($request->all());
+        dump($request->all());
+
+
 
         if(!isset($request['id'])){
             //-- create
@@ -55,15 +57,16 @@ class ApplicationController extends Controller
             //-- edit
             $insertedId = $request['id'];
             $application= Application::findOrFail($insertedId);
-            $application->applicationInfos->each->forceDelete();
+            //$application->applicationInfos->each->forceDelete();
             $application->applicationActivity->forceDelete();
             $application->applicationSummary->forceDelete();
-            $application->applicationItineraries->each->forceDelete();
-            $application->applicationBudgets->each->forceDelete();
+            //$application->applicationItineraries->each->forceDelete();
+            //$application->applicationBudgets->each->forceDelete();
         }
 
-// dump($insertedId);
-//         dd('...........');
+        //dump($insertedId);
+
+
 
         $infos = [];
         $i = 0;
@@ -132,6 +135,7 @@ class ApplicationController extends Controller
         }
         ApplicationItinerary::insert($itineraries);
 
+
         $summaryBudget= [
             "application_id" => $insertedId,
             "course_code" => $request['course-title'],
@@ -165,7 +169,7 @@ class ApplicationController extends Controller
         ApplicationBudget::insert($fundBudget);
 
         //--check if the faculty member has applied already in this academic year
-        if(Application::where('academic_year', '2023')->get()->count() && !isset($request['id'])){  /////////////////////hardcoded
+        if(Application::where('academic_year', '2023')->where('user_id', auth()->user()->id)->get()->count()>1 && !isset($request['id'])){  /////////////////////hardcoded
             $application->update(['status_id' => Lookup('Status')->where('slug', 'on_hold')->first()->id]);
             return redirect()->route('dashboard')->with('message', 'Faculty Members are only allowed one submission per academic session, pending an exception from the Department Chair.');
         }else{
@@ -197,6 +201,9 @@ class ApplicationController extends Controller
         $application = Application::findOrFail($id);
         $application->update(['status_id' => Lookup('Status')->where('slug', 'do_approved')->first()->id]);
 
+        $message = "The DO Committee has approved this application.";
+        $this->sendEMail($message, ['faculty@example.com', 'chair@example.com']);
+
         return redirect()->route('dashboard')->with('message', 'Application '.$id.' is now approved by decanal committee member.');
     }
 
@@ -205,7 +212,23 @@ class ApplicationController extends Controller
         $application = Application::findOrFail($id);
         $application->update(['status_id' => Lookup('Status')->where('slug', 'do_denied')->first()->id]);
 
+        $message = "The DO Committee has denied this application.";
+        $this->sendEMail($message, ['faculty@example.com', 'chair@example.com']);
+
         return redirect()->route('dashboard')->with('message', 'Application '.$id.' has been denied.');
+    }
+
+
+    public function sendEmail(string $message, array $recipient): void
+    {
+        //-- this should be done using job queue
+
+        $data = ['message' => $message];
+
+       // Mail::to('faculty@example.com', 'chair@example.com')->send(new RevisionEmail($data));
+        Mail::to($recipient)->send(new RevisionEmail($data));
+
+        //return 'Email sent!';
     }
 
 

@@ -95,7 +95,7 @@
                                 </tr>
                         @empty
                                 <tr>
-                                    <td colspan='6'>No item found.</td>
+                                    <td colspan='9'>No item found.</td>
                                 </tr>
                         @endforelse
                     </tbody>
