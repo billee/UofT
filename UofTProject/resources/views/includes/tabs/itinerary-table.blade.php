@@ -5,7 +5,7 @@
                 <div class="col-6">
                     <div class="form-group">
                         <label for="itinerary_date-{{$n}}" class="fw-bold">Date:</label>
-                        <input type="text" class="form-control" id="itinerary_date-{{$n}}" name="itinerary_date-{{$n}}"  value="@if('view' == $pageMode) {{$itinerary->dates}} @endif">
+                        <input type="text" class="form-control" id="itinerary_date-{{$n-1}}" name="itinerary_date-{{$n}}"  value="@if('view' == $pageMode) {{$itinerary->dates}} @endif">
                     </div>
                 </div>
                 <div class="col-6">

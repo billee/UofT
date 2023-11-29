@@ -1,10 +1,10 @@
-    @php $n = 0; @endphp
+    @php $n = -1; @endphp
     @if('view' == $pageMode)
         @foreach($application->applicationItineraries as $itinerary)
             @include('includes.tabs.itinerary-table', ['n' => ++$n])
         @endforeach
     @else
-        @include('includes.tabs.itinerary-table')
+        @include('includes.tabs.itinerary-table', ['n' => ++$n])
     @endif
 
 

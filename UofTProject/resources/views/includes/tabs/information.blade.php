@@ -1,10 +1,10 @@
-    @php $n = 0; @endphp
+    @php $n = -1; @endphp
     @if('view' == $pageMode)
         @foreach($application->applicationInfos as $info)
             @include('includes.tabs.information-table', ['n' => ++$n])
         @endforeach
     @else
-        @include('includes.tabs.information-table')
+        @include('includes.tabs.information-table', ['n' => ++$n])
     @endif
 
     <script type="text/javascript">

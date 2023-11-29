@@ -36,9 +36,7 @@ class ApplicationController extends Controller
     }
 
     public function store(Request $request, ApplicationBudgetService $applicationBudgetService){
-        dump($request->all());
-
-
+        //dump($request->all());
 
         if(!isset($request['id'])){
             //-- create
@@ -57,16 +55,14 @@ class ApplicationController extends Controller
             //-- edit
             $insertedId = $request['id'];
             $application= Application::findOrFail($insertedId);
-            //$application->applicationInfos->each->forceDelete();
+            $application->applicationInfos->each->forceDelete();
             $application->applicationActivity->forceDelete();
             $application->applicationSummary->forceDelete();
-            //$application->applicationItineraries->each->forceDelete();
-            //$application->applicationBudgets->each->forceDelete();
+            $application->applicationItineraries->each->forceDelete();
+            $application->applicationBudgets->each->forceDelete();
         }
 
         //dump($insertedId);
-
-
 
         $infos = [];
         $i = 0;
