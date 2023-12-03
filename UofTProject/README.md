@@ -9,7 +9,12 @@ chair
 dean
 community
 
-start with applying for new application
+how:
+localhost:8000/dashboard
+c:xampp/htdocs/sites/UofT
+php artisan serve
+xampp control panel - activate apache and mysql
+start by applying for new application
 
 todo:
 database migration
