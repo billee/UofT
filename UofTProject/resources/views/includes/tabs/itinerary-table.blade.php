@@ -17,7 +17,7 @@
                 <div class="col-12 mt-4">
                     <div class="form-group">
                         <label for="itinerary_activity-{{$n}}" class="fw-bold">Activity:</label>
-                        <textarea class="form-control" id="itinerary_activity-{{$n}}" rows="5" name="itinerary_activity-{{$n}}" placeholder="Please enter here...">
+                        <textarea class="form-control" id="itinerary_activity-{{$n}}" rows="5" name="itinerary_activity-{{$n}}">
                             @if('view' == $pageMode) {{$itinerary->activity}} @endif
                         </textarea>
                     </div>
